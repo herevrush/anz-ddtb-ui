@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
 import './App.css';
+import Main from "./containers/Main/Main";
+import { makeStyles } from "@material-ui/core";
 
+export const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    minHeight: "100vh",
+    // backgroundColor: "#fffde7",
+  }
+}));
 function App() {
+  const classes = useStyles();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className={classes.root}>
+        <BrowserRouter basename="/">
+          <Main />
+        </BrowserRouter>
+      </div>
     </div>
   );
 }
