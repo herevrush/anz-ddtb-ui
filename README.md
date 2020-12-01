@@ -7,6 +7,17 @@ Application works with below username/password.
 username: john123
 password: sample
 ```
+
+screenshots:
+
+![Login user](https://user-images.githubusercontent.com/5905192/100711784-e2d4a680-3405-11eb-93eb-bf8f591a9848.png?raw=true "Login user")
+
+![accounts Page](https://user-images.githubusercontent.com/5905192/100711790-e405d380-3405-11eb-838b-30db2ff3bd98.png?raw=true "accounts Page")
+
+![transactions](https://user-images.githubusercontent.com/5905192/100711791-e5370080-3405-11eb-9d89-e68bf36a2def.png?raw=true "transactions Page")
+
+![create new account](https://user-images.githubusercontent.com/5905192/100711800-e831f100-3405-11eb-8057-4d696d9b5654.png?raw=true "New account Page")
+
 In the project directory, you can run:
 
 ### `npm start`
