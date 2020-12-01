@@ -14,7 +14,6 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "html-webpack-plugin": "^4.5.0",
-    "jest": "^26.6.0",
     "react": "^17.0.1",
     "react-currency-format": "^1.0.0",
     "react-dom": "^17.0.1",
@@ -29,7 +28,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "webpack --mode=development  --config webpack.dev.js",
+    "start": "react-scripts start",
     "build": "webpack --config webpack.prod.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -57,9 +56,8 @@
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/preset-env": "^7.12.7",
     "@babel/preset-react": "^7.12.7",
-    "babel-loader": "^8.2.2",
+    "babel-loader": "^8.1.0",
     "redux-mock-store": "^1.5.4",
-    "webpack": "^5.9.0",
     "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.4.0"
