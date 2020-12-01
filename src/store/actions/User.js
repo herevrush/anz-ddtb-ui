@@ -1,7 +1,5 @@
-import * as actionTypes from "./actionTypes";
-import { ACCESS_TOKEN } from "../Constants";
-import { getAuthHeaders, getHeaders } from "../Utils";
 import axios from "axios";
+import * as actionTypes from "./actionTypes";
 
 
 export const loginUserSuccess = (user) => {
@@ -39,7 +37,7 @@ export const loginUser = (loginRequest) => {
     return (dispatch) => {
         dispatch(setUserLoadingStarted());
         axios
-            .post(`http://localhost:5001/auth/login`, loginRequest)
+            .post(`http://localhost:6001/auth/login`, loginRequest)
             .then((response) => {
                 dispatch(loginUserSuccess(response.data.user));
             })

@@ -1,5 +1,12 @@
 # anz-ddtb-ui
  Sample react-redux application for login and account transactions.
+
+Application works with below username/password.
+
+```
+username: john123
+password: sample
+```
 In the project directory, you can run:
 
 ### `npm start`

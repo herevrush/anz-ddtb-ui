@@ -32,7 +32,7 @@ export const loadTransactions = (accountNumber) => {
     return (dispatch) => {
         dispatch(setTransactionsLoadingStarted());
         axios
-            .get(`http://localhost:5003/transactions/${accountNumber}`)
+            .get(`http://localhost:6003/transactions/${accountNumber}`)
             .then((response) => {
                 dispatch(transactionsLoadSuccess(accountNumber, response.data.transactions));
             })

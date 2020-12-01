@@ -37,7 +37,7 @@ export const loadAccounts = (username) => {
     return (dispatch) => {
         dispatch(setAccountsLoadingStarted());
         axios
-            .get(`http://localhost:5002/accounts/${username}`)
+            .get(`http://localhost:6002/accounts/${username}`)
             .then((response) => {
                 dispatch(accountLoadSuccess(response.data.accounts));
             })
@@ -51,7 +51,7 @@ export const addNewAccount = (accountData) => {
     return (dispatch) => {
         dispatch(setAccountsLoadingStarted());
         axios
-            .post(`http://localhost:5002/accounts/`, accountData)
+            .post(`http://localhost:6002/accounts/`, accountData)
             .then((response) => {
                 accountData["status"] = "Pending";
                 dispatch(accountAddSuccess(accountData));
