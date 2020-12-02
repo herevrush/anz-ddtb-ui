@@ -23,7 +23,7 @@ const TransactionsList = (props) => {
     let tableHeader = null;
     let tableElements = null;
     let transactions = props.transactions[props.accountNumber];
-    if (transactions.length > 0) {
+    if (transactions && transactions.length > 0) {
         tableHeader = (
             <TableHead>
                 <TableRow>
