@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
+import { LOGIN_ENDPOINT } from "../Weburls";
 
 
 export const loginUserSuccess = (user) => {
@@ -36,8 +37,8 @@ export const setUserLoadingStarted = () => {
 export const loginUser = (loginRequest) => {
     return (dispatch) => {
         dispatch(setUserLoadingStarted());
-        axios
-            .post(`http://localhost:6001/auth/login`, loginRequest)
+        return axios
+            .post(LOGIN_ENDPOINT, loginRequest)
             .then((response) => {
                 dispatch(loginUserSuccess(response.data.user));
             })

@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
+import { ACCOUNTS_ENDPOINT } from "../Weburls";
 
 export const accountLoadSuccess = (accounts) => {
     return {
@@ -36,8 +37,8 @@ export const clearFeedback = () => {
 export const loadAccounts = (username) => {
     return (dispatch) => {
         dispatch(setAccountsLoadingStarted());
-        axios
-            .get(`http://localhost:6002/accounts/${username}`)
+        return axios
+            .get(`${ACCOUNTS_ENDPOINT}/${username}`)
             .then((response) => {
                 dispatch(accountLoadSuccess(response.data.accounts));
             })
@@ -51,7 +52,7 @@ export const addNewAccount = (accountData) => {
     return (dispatch) => {
         dispatch(setAccountsLoadingStarted());
         axios
-            .post(`http://localhost:6002/accounts/`, accountData)
+            .post(`${ACCOUNTS_ENDPOINT}`, accountData)
             .then((response) => {
                 accountData["status"] = "Pending";
                 dispatch(accountAddSuccess(accountData));

@@ -58,7 +58,7 @@ const transactionsReducer = (state = initialState, action) => {
             return loadTransactions(state, action);
         case actionTypes.TRANS_LOAD_FAILED:
             return loadTransactionsFailed(state, action);
-        case actionTypes.ACCOUNT_LOADING_STARTED:
+        case actionTypes.TRANS_LOADING_STARTED:
             return startLoading(state);
         case actionTypes.CLEAR_TRANS_FEEDBACK:
             return clearFeedback(state, action);

@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
+import { TRANSACTIONS_ENDPOINT } from "../Weburls";
 
 export const transactionsLoadSuccess = (accountNumber, transactions) => {
     return {
@@ -31,8 +32,8 @@ export const clearTransFeedback = () => {
 export const loadTransactions = (accountNumber) => {
     return (dispatch) => {
         dispatch(setTransactionsLoadingStarted());
-        axios
-            .get(`http://localhost:6003/transactions/${accountNumber}`)
+        return axios
+            .get(`${TRANSACTIONS_ENDPOINT}/${accountNumber}`)
             .then((response) => {
                 dispatch(transactionsLoadSuccess(accountNumber, response.data.transactions));
             })

@@ -7,7 +7,7 @@ import {
 } from "../Constants";
 
 const initialState = {
-    accounts: null,
+    accounts: [],
     loading: false,
     feedback: null,
     feedbackType: null,
@@ -48,7 +48,7 @@ const addAccount = (state, action) => {
 
 const loadAccountsFailed = (state, action) => {
     return updateObject(state, {
-        accounts: null,
+        accounts: [],
         loading: false,
         feedback: FEEDBACK_ERROR,
         feedbackType: FEEDBACK_TYPE_ACCOUNTS,
@@ -68,7 +68,7 @@ const accountReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.ACCOUNTS_LOADED:
             return loadAccounts(state, action);
-        case actionTypes.LOGIN_USER_FAILED:
+        case actionTypes.ACCOUNTS_LOAD_FAILED:
             return loadAccountsFailed(state, action);
         case actionTypes.ACCOUNT_LOADING_STARTED:
             return startLoading(state);
