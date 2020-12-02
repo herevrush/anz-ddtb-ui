@@ -7,6 +7,8 @@ import { Message } from "../../../components/UI/Message/Message";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import * as actions from "../../../store/actions/index";
 import { FEEDBACK_SUCCESS, FEEDBACK_TYPE_LOGIN } from "../../../store/Constants";
+import Axios from "axios";
+import ErrorHandler from "../../../hoc/ErrorHandler/ErrorHandler";
 
 class Login extends Component {
     constructor(props) {
@@ -88,4 +90,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(ErrorHandler(Login, Axios));
