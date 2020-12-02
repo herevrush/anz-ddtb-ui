@@ -13,7 +13,4 @@ describe('<Transaction />', () => {
         expect(wrapper.find(TableCell)).toHaveLength(5);
         expect(wrapper.find(TableRow)).toHaveLength(1);
     });
-
-
-
 });

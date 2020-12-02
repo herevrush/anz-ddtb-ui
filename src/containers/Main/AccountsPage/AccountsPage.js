@@ -4,12 +4,14 @@ import Spinner from "../../../components/UI/Spinner/Spinner";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions/index";
 import AccountList from '../../../components/AccountList/AccountList';
+import ErrorHandler from '../../../hoc/ErrorHandler/ErrorHandler';
+import Axios from 'axios';
 
 class AccountsPage extends Component {
 
 
     componentDidMount() {
-        if (!this.props.accounts && this.props.currentUser) {
+        if (this.props.accounts.length === 0 && this.props.currentUser) {
             this.props.onLoadAccounts(this.props.currentUser.username);
         }
     }
@@ -71,4 +73,4 @@ const mapDispatchToProps = (dispatch) => {
         onViewTransactions: (accountNumber) => dispatch(actions.loadTransactions(accountNumber)),
     };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(AccountsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ErrorHandler(AccountsPage, Axios));
