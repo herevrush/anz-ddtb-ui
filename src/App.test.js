@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { Typography } from '@material-ui/core';
 import renderer from 'react-test-renderer';
 import Main from './containers/Main/Main';
+import LoginForm from './components/LoginPage/LoginForm/LoginForm';
 const mockStore = configureStore();
 const initialState = {
     a: {
@@ -40,7 +41,6 @@ const initialState = {
 let store;
 let component
 beforeEach(() => {
-    // wrapper = shallow(<Main />);
     store = mockStore(initialState);
     component = renderer.create(
         <Provider store={store}>
@@ -50,7 +50,18 @@ beforeEach(() => {
 });
 
 test('renders login on start', () => {
-    // console.log(component.toJSON());
-    expect(component.toJSON()).toMatchSnapshot();
+    const testInstance = component.root;
+    const instance = testInstance.instance;
+    const testElem = (<Typography variant="h6" align="center" color="primary">
+        <strong>Login</strong>
+    </Typography>);
+    // expect(component.toJSON()).toMatchSnapshot();
+    expect(testInstance.find(node => node.type === Typography).props.children.type).toEqual('strong');
+    expect(testInstance.findByType(LoginForm)).toBeTruthy();
+    // expect(testInstance.findByType(LoginForm)).toHaveLength(4);
+    // console.assert(testInstance.find(node => node.type === Typography).props.children.type === 'strong');
+    // console.assert(testInstance.findByType(LoginForm).length === 1);
+    // expect(testInstance.findByType(LoginForm).length === 4).
+    // expect(component.findByType(strong).children).findBychildren).toEqual("Login");
 });
 

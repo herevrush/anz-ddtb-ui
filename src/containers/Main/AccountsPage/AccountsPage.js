@@ -33,7 +33,6 @@ class AccountsPage extends Component {
         }
         return (
             <Container component="main" maxWidth="xl">
-
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
                         {siteContent}
