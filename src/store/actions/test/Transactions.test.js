@@ -77,5 +77,33 @@ describe('transaction action', () => {
         });
     });
 
+    it('load transactions failed', () => {
+
+        const middleware = [thunk];
+        const mockStore = configureMockStore(middleware);
+        const mockState = {
+            t: {
+                transactions: [],
+                loading: false,
+                feedback: null,
+                feedbackType: null,
+                feedbackMessage: null,
+            }
+        };
+
+        const store = mockStore(mockState);
+        var mock = new MockAdapter(Axios);
+        mock.onGet(`${TRANSACTIONS_ENDPOINT}/234565657`).reply(404, {
+            error: "No transactions."
+        });
+        const expectedActions = [
+            actions.setTransactionsLoadingStarted(),
+            actions.transactionsLoadFailed("234565657", "Request failed with status code 404")
+        ];
+        return store.dispatch(actions.loadTransactions("234565657")).then(() => {
+            // return of async actions
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
 
 });

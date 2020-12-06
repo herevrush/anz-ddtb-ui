@@ -51,6 +51,7 @@ describe('Account action', () => {
         expect(accountLoadFailed(error)).toEqual(expectedAction);
     });
 
+
     it('loading started - account ', () => {
         const expectedAction = {
             type: actionTypes.ACCOUNT_LOADING_STARTED,
@@ -62,12 +63,16 @@ describe('Account action', () => {
         const mockStore = configureMockStore(middleware);
         const mockState = {
             a: {
-                authenticated: false,
-                user: null,
+                accounts: [],
                 loading: false,
                 feedback: null,
                 feedbackType: null,
                 feedbackMessage: null,
+                accountTypes: [
+                    { name: "Savings Account", value: "SAVINGS" },
+                    { name: "Everyday Account", value: "EVERYDAY" },
+                    { name: "Loan Account", value: "LOAN" }
+                ],
             }
         };
         const store = mockStore(mockState);
@@ -87,6 +92,82 @@ describe('Account action', () => {
             actions.accountLoadSuccess(ACCOUNTS)
         ];
         return store.dispatch(actions.loadAccounts(123)).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
+
+    it('load accounts failed', () => {
+        const middleware = [thunk];
+        const mockStore = configureMockStore(middleware);
+        const mockState = {
+            a: {
+                accounts: [],
+                loading: false,
+                feedback: null,
+                feedbackType: null,
+                feedbackMessage: null,
+                accountTypes: [
+                    { name: "Savings Account", value: "SAVINGS" },
+                    { name: "Everyday Account", value: "EVERYDAY" },
+                    { name: "Loan Account", value: "LOAN" }
+                ],
+            }
+        };
+        const store = mockStore(mockState);
+        var mock = new MockAdapter(Axios);
+        mock.onGet(`${ACCOUNTS_ENDPOINT}/123`).reply(404, {
+            error: "No accounts."
+        });
+
+        const expectedActions = [
+            actions.setAccountsLoadingStarted(),
+            actions.accountLoadFailed("Request failed with status code 404")
+        ];
+        return store.dispatch(actions.loadAccounts(123)).then(() => {
+            expect(store.getActions()).toEqual(expectedActions);
+        });
+    });
+
+    it('add account', () => {
+        const middleware = [thunk];
+        const mockStore = configureMockStore(middleware);
+        const mockState = {
+            a: {
+                accounts: [],
+                loading: false,
+                feedback: null,
+                feedbackType: null,
+                feedbackMessage: null,
+                accountTypes: [
+                    { name: "Savings Account", value: "SAVINGS" },
+                    { name: "Everyday Account", value: "EVERYDAY" },
+                    { name: "Loan Account", value: "LOAN" }
+                ],
+            }
+        };
+        const store = mockStore(mockState);
+        var mock = new MockAdapter(Axios);
+        mock.onPost(`${ACCOUNTS_ENDPOINT}`, {
+            accountType: "Savings",
+            name: "account1"
+        }).reply(200, {
+            message: "success"
+        });
+        const accountData = {
+            accountType: "Savings",
+            name: "account1",
+        };
+        const resultAccountData = {
+            accountType: "Savings",
+            name: "account1",
+            status: "Pending"
+        };
+        const expectedActions = [
+            actions.setAccountsLoadingStarted(),
+            actions.accountAddSuccess(resultAccountData)
+        ];
+
+        return store.dispatch(actions.addNewAccount(accountData)).then(() => {
             expect(store.getActions()).toEqual(expectedActions);
         });
     });
